@@ -1,7 +1,8 @@
 /**
 *	//////////////// KBmodal OBJECT	////////////////
 **/
-
+	(function($){
+		
 	// KBmodal Object constructor;
 	function KBmodal(url, type, objname, gallery) {
 		
@@ -283,6 +284,7 @@
 
 	});
 	
+	})(jQuery);
 	
 /**
 *	//////////////// KBmodal OBJECT end	////////////////
