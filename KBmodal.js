@@ -1,8 +1,8 @@
+
 /**
 *	//////////////// KBmodal OBJECT	////////////////
 **/
-	(function($){
-		
+
 	// KBmodal Object constructor;
 	function KBmodal(url, type, objname, gallery) {
 		
@@ -48,7 +48,7 @@
 	    	modalBody += '</div>';
 
 	    	// show modal;
-	    	$('body').append(modalBody);
+	    	jQuery('body').append(modalBody);
 
 	    	// resize modals on their generation (responsive)
 	    	switch(self.contentType) {
@@ -68,7 +68,7 @@
 	    }
 
 	    self.closeModal = function(){
-	    	$('[modalName='+self.name+']').remove();
+	    	jQuery('[modalName='+self.name+']').remove();
 	    }
 
 	    generateImageModal = function(){
@@ -124,10 +124,10 @@
 
 	    resizeModalImage = function(){
 
-	    	var $maxImageWidth = $('.KBmodal__image').width();
-	    	var $maxImageHeight = $('.KBmodal__image').height();
+	    	var $maxImageWidth = jQuery('.KBmodal__image').width();
+	    	var $maxImageHeight = jQuery('.KBmodal__image').height();
 
-	    	var $img = $('.KBmodal__image img');
+	    	var $img = jQuery('.KBmodal__image img');
 
 	    	$img.css({
 	    		'max-width': $maxImageWidth,
@@ -138,8 +138,8 @@
 
 	    resizeModalYt = function(){
 
-	    	var $iframe = $('.KBmodal__yt iframe');
-	    	var $iframeWidth = $('.KBmodal__yt iframe').width();
+	    	var $iframe = jQuery('.KBmodal__yt iframe');
+	    	var $iframeWidth = jQuery('.KBmodal__yt iframe').width();
 
 	    	$iframe.css({
 	    		'height': $iframeWidth * 0.5625,
@@ -148,13 +148,13 @@
 	    }
 
 	    createGalleryArray = function(){
-	    	$('[data-content-gallery='+self.galleryName+']').each(function() {
-	    		self.galleryItems.push($(this).attr('data-content-url'));
+	    	jQuery('[data-content-gallery='+self.galleryName+']').each(function() {
+	    		self.galleryItems.push(jQuery(this).attr('data-content-url'));
 			});
 	    }
 
 	    // resize modals on screen resize (responsive)
-	    $( window ).resize(function() {
+	    jQuery( window ).resize(function() {
 
 			switch(self.contentType) {
 			    case 'yt':
@@ -202,7 +202,7 @@
 				KBcurrent_item = KBcurrent_item;
 			}
 
-			$('[modalname="'+KBmodal_name+'"]').find('img').attr('src', window[KBmodal_name].galleryItems[KBcurrent_item]);
+			jQuery('[modalname="'+KBmodal_name+'"]').find('img').attr('src', window[KBmodal_name].galleryItems[KBcurrent_item]);
 
 		}
 		
@@ -218,7 +218,7 @@
 				KBcurrent_item = KBcurrent_item;
 			}
 
-			$('[modalname="'+KBmodal_name+'"]').find('img').attr('src', window[KBmodal_name].galleryItems[KBcurrent_item]);
+			jQuery('[modalname="'+KBmodal_name+'"]').find('img').attr('src', window[KBmodal_name].galleryItems[KBcurrent_item]);
 
 		}
 
@@ -230,22 +230,22 @@
 	}
 
     // open KBmodal on '.KBmodal' class click
-    $(document).on('click', '.KBmodal', function(){
-		var url = $(this).attr('data-content-url');
-		var type = ($(this).attr('data-content-type') ? $(this).attr('data-content-type') : 'image');
-		var gallery = $(this).attr('data-content-gallery');
+    jQuery(document).on('click', '.KBmodal', function(){
+		var url = jQuery(this).attr('data-content-url');
+		var type = (jQuery(this).attr('data-content-type') ? jQuery(this).attr('data-content-type') : 'image');
+		var gallery = jQuery(this).attr('data-content-gallery');
 
 		generateKBmodal(url, type, gallery);
 	});
 
 	// close modal and remove object
-	$(document).on('click', '.KBmodal__opened', function(e){
+	jQuery(document).on('click', '.KBmodal__opened', function(e){
 		
 		KBcloseAction();
 
 	});
 
-	$(document).keydown(function(e) {
+	jQuery(document).keydown(function(e) {
 	    switch(e.which) {
 	        case 37: //left arrow key
 
@@ -270,21 +270,20 @@
 	    e.preventDefault(); // prevent the default action (scroll / move caret)
 	});
 
-	$(document).on('click', '.KBprev', function(e){
+	jQuery(document).on('click', '.KBprev', function(e){
 		e.stopPropagation();
 
 		KBprevAction();
 
 	});
 
-	$(document).on('click', '.KBnext', function(e){
+	jQuery(document).on('click', '.KBnext', function(e){
 		e.stopPropagation();
 
 		KBnextAction();
 
 	});
 	
-	})(jQuery);
 	
 /**
 *	//////////////// KBmodal OBJECT end	////////////////
