@@ -54,15 +54,25 @@
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
+.KBmodal__html{
+	opacity: 0;
+    // animation
+    animation-name: KBmodalAnimateContentShow;
+    animation-delay: 0.5s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	cursor: auto;
+}
 .KBgalleryNav{
 	font-size: 50px;
 	font-weight: bold;
-	background-color: $yellow;
-	color: $color__text-main;
+	background-color: $color__KBmodalNav--bg;
+	color: $color__KBmodalNav--text;
 	transition: .5s;
 	padding: 0px 10px;
 	&:hover{
-		color: $yellow;
-		background-color: $color__text-main;
+		color: $color__KBmodalNav--textHover;
+		background-color: $color__KBmodalNav--bgHover;
 	}
 }
