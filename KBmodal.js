@@ -10,11 +10,11 @@
 
 		self.name = objname;
 	    self.contentType = type;
-	    self.contentUrl = url;
+	    self.contentUrl = url; // or html content if type is set to "html"
 	    if (typeof gallery != 'undefined') {
 	    	self.galleryName = gallery;
 	    	self.galleryItems = [];
-	    }
+		}
 
 	    // methods;
 
@@ -39,6 +39,9 @@
 			        break;
 		        case 'gallery':
 			        modalBody +=  generateGalleryModal();
+			        break;
+		        case 'html':
+			        modalBody +=  generateHTMLModal();
 			        break;
 			    default:
 			        modalBody += generateImageModal();
@@ -77,6 +80,18 @@
 	    	modalBody = '<div class="KBmodal__image">';
 
 	    	modalBody += '<img src="'+self.contentUrl+'">';
+
+			modalBody += '</div>';
+			return modalBody;
+
+		}
+		
+		generateHTMLModal = function(){
+	    	var modalBody;
+
+	    	modalBody = '<div class="KBmodal__html">';
+
+	    	modalBody += self.contentUrl;
 
 			modalBody += '</div>';
 			return modalBody;
@@ -174,6 +189,7 @@
 
 	}
 
+// (function($){
 	// KBmodal functions
 
 	/* 
@@ -184,9 +200,14 @@
 	
 	*/
 	
-	function generateKBmodal(url, type, gallery){
+	function generateKBmodal(url, type, gallery, name){
 		var modalID = Math.floor((Math.random() * 100) + 1);
-		var modalName = "KBmodal"+modalID;
+
+		if (typeof name != 'undefined') {
+	    	var modalName = name;
+		}else{
+			var modalName = "KBmodal"+modalID;
+		}
 
 		window[modalName] = new KBmodal(url, type, modalName, gallery);
 		window[modalName].openModal();
@@ -224,9 +245,15 @@
 
 	}
 
-	function KBcloseAction(){
-		window[KBmodal_name].closeModal();
-		delete window[KBmodal_name];
+	function KBcloseAction(modalName){
+		if (typeof modalName !== 'undefined') {
+			var name = modalName;
+		}else{
+			var name = KBmodal_name;
+		}
+		window[name].closeModal();
+		delete window[name];
+		openedModal = null;
 	}
 
     // open KBmodal on '.KBmodal' class click
@@ -240,8 +267,14 @@
 
 	// close modal and remove object
 	jQuery(document).on('click', '.KBmodal__opened', function(e){
-		
+
+		e.stopPropagation();
 		KBcloseAction();
+
+	});
+	jQuery(document).on('click', '.KBmodal__html', function(e){
+
+		e.stopPropagation();
 
 	});
 
@@ -288,3 +321,4 @@
 /**
 *	//////////////// KBmodal OBJECT end	////////////////
 **/
+// })(jQuery);
