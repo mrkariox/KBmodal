@@ -1,5 +1,8 @@
 # KBmodal
 JavaScript library for displaying popup modals including images, galleries, youtube iframes or custom HTML content. Fully responsive.
+## Demo
+inside docs catalog in repo
+https://mrkariox.github.io/KBmodal/
 ## Usage
 1. First add jQuery library to your document (tested on jquery-3.3.1).
 2. Include font awesome library for gallery icons
