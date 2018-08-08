@@ -2,6 +2,8 @@
 JavaScript library for displaying popup modals including images, galleries, youtube iframes or custom HTML content. Fully responsive.
 ## Usage
 1. First add jQuery library to your document (tested on jquery-3.3.1).
+2. Include font awesome library for gallery icons
+    (<link rel='stylesheet' id='fontawesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.9.8' type='text/css' media='all' />)
 2. Then add JS and CSS/SCSS files to your project (from inc repo catalog)
 ### Creating image modal:
 ```
@@ -11,6 +13,7 @@ JavaScript library for displaying popup modals including images, galleries, yout
 </div>
 ```
 ### Creating gallery modal:
+User can use arrows (left, right) to navigate through gallery and esc key to leave gallery
 ```
 <div class="KBmodal" data-content-url="src_to_full_size_image" data-content-type="gallery" data-content-gallery="unique_for_this_gallery_id_same_for_all_images">
     //content (img or anything else)
