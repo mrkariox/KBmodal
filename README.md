@@ -44,4 +44,18 @@ User can use arrows (left, right) to navigate through gallery and esc key to lea
     //content (img or anything else)
 </div>
 ```
+### Using modal through JS:
+```
+var content = '<a href="/link"><img src="url_to_img"></a>';
+generateKBmodal(content, 'html', undefined, undefined);
+```
+### Using modal through JS (modal not closeable):
+```
+var content = '<a href="/link"><img src="url_to_img"></a>';
+generateKBmodal(content, 'html', undefined, undefined, "1");
+```
+And to close modal use:
+```
+KBcloseAction(undefined, true);
+```
 
