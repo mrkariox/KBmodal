@@ -4,13 +4,14 @@
 **/
 
 	// KBmodal Object constructor;
-	function KBmodal(url, type, objname, gallery) {
+	function KBmodal(url, type, objname, gallery, notcloseable) {
 		
 		var self = this;
 
 		self.name = objname;
 	    self.contentType = type;
-	    self.contentUrl = url; // or html content if type is set to "html"
+		self.contentUrl = url; // or html content if type is set to "html"
+		self.closeable = notcloseable;
 	    if (typeof gallery != 'undefined') {
 	    	self.galleryName = gallery;
 	    	self.galleryItems = [];
@@ -84,6 +85,14 @@
 			modalBody += '</div>';
 			return modalBody;
 
+		}
+
+		self.notcloseable = function(){
+			if (self.closeable == '0') {
+				return true;
+			}else{
+				return false;
+			}
 		}
 		
 		generateHTMLModal = function(){
@@ -200,7 +209,7 @@
 	
 	*/
 	
-	function generateKBmodal(url, type, gallery, name){
+	function generateKBmodal(url, type, gallery, name, notcloseable){
 		var modalID = Math.floor((Math.random() * 100) + 1);
 
 		if (typeof name != 'undefined') {
@@ -209,7 +218,7 @@
 			var modalName = "KBmodal"+modalID;
 		}
 
-		window[modalName] = new KBmodal(url, type, modalName, gallery);
+		window[modalName] = new KBmodal(url, type, modalName, gallery, notcloseable);
 		window[modalName].openModal();
 	}
 
@@ -245,11 +254,16 @@
 
 	}
 
-	function KBcloseAction(modalName){
+	function KBcloseAction(modalName, forceClose){
 		if (typeof modalName !== 'undefined') {
 			var name = modalName;
 		}else{
 			var name = KBmodal_name;
+		}
+		if (!forceClose) {		
+			if (window[name].notcloseable()) {
+				return;
+			}
 		}
 		window[name].closeModal();
 		delete window[name];
@@ -261,8 +275,9 @@
 		var url = jQuery(this).attr('data-content-url');
 		var type = (jQuery(this).attr('data-content-type') ? jQuery(this).attr('data-content-type') : 'image');
 		var gallery = jQuery(this).attr('data-content-gallery');
+		var notcloseable = jQuery(this).attr('data-closable');
 
-		generateKBmodal(url, type, gallery);
+		generateKBmodal(url, type, gallery, undefined, notcloseable);
 	});
 
 	// close modal and remove object
