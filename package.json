@@ -1,0 +1,33 @@
+{
+  "name": "kbmodal",
+  "version": "1.0.0",
+  "description": "JavaScript library for displaying popup modals including images, galleries, youtube iframes or custom HTML content. Fully responsive.",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "scripts": {
+    "build": "gulp sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkariox/KBmodal.git"
+  },
+  "keywords": [
+    "javascript",
+    "modal",
+    "popup"
+  ],
+  "author": "MrKarioX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrkariox/KBmodal/issues"
+  },
+  "homepage": "https://github.com/mrkariox/KBmodal#readme"
+}
